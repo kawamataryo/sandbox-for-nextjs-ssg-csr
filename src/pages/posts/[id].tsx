@@ -3,18 +3,17 @@ import useSWR from 'swr';
 import Layout from '../../components/layouts/Layout';
 import { Header } from '../../components/Header';
 import { Post } from '../../lib/stubDB';
-import {
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-  NextPage,
-} from 'next';
+import { NextPage } from 'next';
 import { ArticleSingle } from '../../components/ArticleSingle';
 import { fetcher } from '../../lib/fetcher';
+import { useRouter } from 'next/router';
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
+const SinglePage: NextPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
 
-const SinglePage: NextPage<Props> = ({ postId }) => {
-  const { data: post, error } = useSWR<Post>(`/api/posts/${postId}`, fetcher);
+  // 投稿の取得
+  const { data: post, error } = useSWR<Post>(`/api/posts/${id}`, fetcher);
 
   return (
     <Layout>
@@ -22,19 +21,6 @@ const SinglePage: NextPage<Props> = ({ postId }) => {
       {post ? <ArticleSingle post={post} /> : 'loading...'}
     </Layout>
   );
-};
-
-export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  return {
-    props: { postId: params?.id },
-  };
-};
-
-export const getStaticPaths = () => {
-  return {
-    paths: [{ params: { id: '1' } }],
-    fallback: true,
-  };
 };
 
 export default SinglePage;

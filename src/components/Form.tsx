@@ -45,9 +45,8 @@ export const Form: React.FC<FormProps> = ({ submit }) => {
           <div className="field">
             <label className="label">Content</label>
             <div className="control">
-              <input
-                type="text"
-                className="input"
+              <textarea
+                className="textarea"
                 value={form.content}
                 onChange={(e) => {
                   setForm({ ...form, content: e.target.value });
