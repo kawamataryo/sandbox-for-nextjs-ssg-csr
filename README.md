@@ -6,7 +6,7 @@ Sandbox for Next.js SSG + CSR.
 
 ## Architecture
 
-![](https://i.gyazo.com/f2597ebdb298005c2c613f9ff959cc5b.png)
+![](https://i.gyazo.com/362aa902bc833ab00cd119dcf3a4bcda.png)
 
 
 ## Get started
