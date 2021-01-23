@@ -13,10 +13,14 @@ export const Article: React.FC<ArticleProps> = ({ post, onDelete }) => {
       <article className="media">
         <div className="media-left">
           <figure className="image is-64x64">
-            <img
-              src={`https://picsum.photos/id/${post.id * 10}/128/128`}
-              alt="Image"
-            />
+            <Link href={`/posts/${post.id}`}>
+              <a>
+                <img
+                  src={`https://picsum.photos/id/${post.id * 10}/128/128`}
+                  alt="Image"
+                />
+              </a>
+            </Link>
           </figure>
         </div>
         <div className="media-content">
