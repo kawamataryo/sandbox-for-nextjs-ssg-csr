@@ -36,6 +36,24 @@ export const addPost = functions.region(REASION).https.onRequest(async (req, res
   });
 });
 
+export const deletePost = functions.region(REASION).https.onRequest(async (req, res) => {
+
+  if (req.method !== 'DELETE') {
+    res.status(400).send("Bad request")
+  }
+  if (req.query.id === undefined) {
+    res.status(400).send("Bad request")
+  }
+
+  const collectionSnap = await db.collection("posts").where('id', '==', Number(req.query.id)).get()
+
+  const doc = collectionSnap.docs.pop()
+  await doc?.ref.delete()
+
+  res.set("Access-Control-Allow-Origin", "*");
+  res.send();
+});
+
 export const getPosts = functions.region(REASION).https.onRequest(async (req, res) => {
   const collectionSnap = await db.collection("posts").orderBy('id', 'desc').get()
 

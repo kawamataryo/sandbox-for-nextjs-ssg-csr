@@ -11,7 +11,7 @@ export const ArticleSingle: React.FC<ArticleProps> = ({ post }) => {
     <>
       <div className="card mb-5">
         <div className="card-image">
-          <figure className="image is-4by3">
+          <figure className="image is-3by1">
             <img
               src={`https://picsum.photos/id/${post.id * 10}/1000/400`}
               alt="image"

@@ -17,7 +17,13 @@ const Home: NextPage = () => {
 
   // 投稿の追加
   const addPost = async (form: FormState) => {
-    await fetch('/api/post', { method: 'POST', body: JSON.stringify(form) });
+    await fetch('/api/posts', { method: 'POST', body: JSON.stringify(form) });
+    await mutate();
+  };
+
+  // 投稿の削除
+  const deletePost = async (id: number) => {
+    await fetch(`/api/posts/${id}`, { method: 'DELETE' });
     await mutate();
   };
 
@@ -27,10 +33,13 @@ const Home: NextPage = () => {
       <Form submit={addPost} />
       <h1 className="title is-4 mt-6">Posts</h1>
       <div>
-        {res?.data ? '' : 'loading...'}
-        {res?.data.map((p, index) => {
-          return <Article post={p} key={index} />;
-        })}
+        {res?.data ? (
+          res.data.map((p, index) => {
+            return <Article post={p} onDelete={deletePost} key={index} />;
+          })
+        ) : (
+          <progress className="progress is-primary" max="100" />
+        )}
       </div>
     </Layout>
   );

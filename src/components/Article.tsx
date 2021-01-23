@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 type ArticleProps = {
   post: Post;
+  onDelete: (id: number) => void;
 };
 
-export const Article: React.FC<ArticleProps> = ({ post }) => {
+export const Article: React.FC<ArticleProps> = ({ post, onDelete }) => {
   return (
     <div className="box">
       <article className="media">
@@ -26,6 +27,12 @@ export const Article: React.FC<ArticleProps> = ({ post }) => {
           </Link>
           <p>{post.content}</p>
         </div>
+        <button
+          className="button is-small is-danger has-text-weight-bold is-light"
+          onClick={() => onDelete(post.id)}
+        >
+          delete
+        </button>
       </article>
     </div>
   );

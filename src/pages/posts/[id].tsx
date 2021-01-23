@@ -21,7 +21,12 @@ const SinglePage: NextPage = () => {
   return (
     <Layout>
       <Header />
-      {res?.data ? <ArticleSingle post={res.data} /> : 'loading...'}
+
+      {res?.data ? (
+        <ArticleSingle post={res.data} />
+      ) : (
+        <progress className="progress is-primary" max="100" />
+      )}
     </Layout>
   );
 };

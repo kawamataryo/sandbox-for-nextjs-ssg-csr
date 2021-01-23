@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Head } from 'next/document';
 
 export const Header: React.FC = () => {
   return (
