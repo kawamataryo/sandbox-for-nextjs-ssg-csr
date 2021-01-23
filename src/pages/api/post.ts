@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PostsDB } from '../../lib/stubDB';
 import fetch from 'node-fetch';
 import { API_ROOT_PATH } from '../../config/constants';
 
