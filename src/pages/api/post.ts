@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PostsDB } from '../../lib/stubDB';
+import fetch from 'node-fetch';
+import { API_ROOT_PATH } from '../../config/constants';
 
-export default (
+export default async (
   nextApiRequest: NextApiRequest,
   nextApiResponse: NextApiResponse
 ) => {
@@ -13,12 +15,15 @@ export default (
   }
 
   const post = {
-    id: PostsDB.length + 1,
     title: body.title,
     content: body.content,
   };
 
-  PostsDB.push(post);
+  const response = await fetch(`${API_ROOT_PATH}/addPost`, {
+    method: 'POST',
+    body: JSON.stringify(post),
+  });
+  const postRes = await response.json();
 
-  nextApiResponse.json(post);
+  nextApiResponse.json(postRes);
 };

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PostsDB } from '../../../lib/stubDB';
+import { API_ROOT_PATH } from '../../../config/constants';
 
 export default async (
   nextApiRequest: NextApiRequest,
@@ -9,6 +9,7 @@ export default async (
     query: { id },
   } = nextApiRequest;
 
-  const post = PostsDB.filter((p) => p.id === Number(id))?.[0];
-  nextApiResponse.status(200).json(post);
+  const response = await fetch(`${API_ROOT_PATH}/getPost?id=${id}`);
+  const resPost = await response.json();
+  nextApiResponse.status(200).json(resPost);
 };
