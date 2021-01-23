@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Post } from '../lib/stubDB';
+import { Post } from '../lib/types';
 import Link from 'next/link';
 
 type ArticleProps = {
