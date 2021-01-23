@@ -21,7 +21,6 @@ const SinglePage: NextPage = () => {
   return (
     <Layout>
       <Header />
-
       {res?.data ? (
         <ArticleSingle post={res.data} />
       ) : (
