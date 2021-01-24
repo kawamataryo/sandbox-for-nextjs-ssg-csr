@@ -10,6 +10,11 @@ Sandbox for Next.js SSG + CSR.
 
 
 ## Get started
+Set API URL to env.
+```
+mv .env.sample .env
+# set your API URL.
+```
 Start dev server.
 
 ```
