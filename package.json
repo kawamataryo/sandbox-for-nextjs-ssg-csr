@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "serverless"
+    "deploy": "serverless",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@sls-next/serverless-component": "^1.18.0",
